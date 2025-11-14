@@ -11,7 +11,7 @@ const router = createBrowserRouter([{
     { index: true, lazy : () => import( './pages/App' ).then( lazify ) },
     { path : "login",  lazy : () => import( './pages/Login' ).then( lazify ) }
   ]
-}], { basename: '/carpeta_tributaria/' });
+}], { basename: '/carpeta_tributaria' });
 
 export default function Router() {
   return <RouterProvider router={router} />
