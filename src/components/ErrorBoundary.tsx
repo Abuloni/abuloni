@@ -23,7 +23,7 @@ export function ErrorBoundary() {
             </div>
           : 
             <div>
-              <p>{(error as any)?.message}</p>
+              <p>{error instanceof Error ? error.message : 'Unknown error'}</p>
             </div> }
       </div>
     </div>

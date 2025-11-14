@@ -8,7 +8,8 @@ const router = createBrowserRouter([{
   ErrorBoundary : ErrorBoundary,
   path : "/",
   children : [
-    { index: true, lazy : () => import( './App' ).then( lazify ) }
+    { index: true, lazy : () => import( './pages/App' ).then( lazify ) },
+    { path : "login",  lazy : () => import( './pages/Login' ).then( lazify ) }
   ]
 }], { basename: import.meta.env.VITE_BASE });
 
