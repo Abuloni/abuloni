@@ -2,6 +2,9 @@ import { useState } from 'react'
 import reactLogo from '../assets/react.svg'
 import viteLogo from "../assets/vite.svg"
 import '../style/App.css'
+import { digestMessage } from '../shared/crypt'
+
+// ibm api key 3jk10WXB73fIwaET6vhmbCJkqfQaOCP-Rh9KY6ncm8gE
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -38,11 +41,35 @@ function Login() {
     setError('')
     
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500))
-      
+
+      console.log('felipe hash this:', await digestMessage(formData.password))
+
+
+      fetch('https://function-b4.22sao0ofnhw5.br-sao.codeengine.appdomain.cloud/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: 'felipe'
+        })
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`)
+        }
+        return response.json()
+      })
+      .then(data => {
+        console.log('Response data:', data)
+        // Here you would typically check the response to see if login was successful
+        setIsLoggedIn(true)
+      })
+      .catch(err => {
+        throw err
+      })
       // For demo purposes, accept any email/password combination
-      setIsLoggedIn(true)
+      setIsLoggedIn(false)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to login')
     } finally {
