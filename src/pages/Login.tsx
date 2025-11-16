@@ -3,6 +3,8 @@ import reactLogo from '../assets/react.svg'
 import viteLogo from "../assets/vite.svg"
 import '../style/App.css'
 import { digestMessage } from '../shared/crypt'
+import { userData } from '../shared/auth'
+import { Link } from 'react-router'
 
 // ibm api key 3jk10WXB73fIwaET6vhmbCJkqfQaOCP-Rh9KY6ncm8gE
 
@@ -42,8 +44,8 @@ function Login() {
     
     try {
 
-      console.log('felipe hash this:', await digestMessage(formData.password))
-
+      const s = Date.now().toString();
+      const d = await digestMessage(s + formData.password);
 
       fetch('https://function-b4.22sao0ofnhw5.br-sao.codeengine.appdomain.cloud/', {
         method: 'POST',
@@ -51,7 +53,8 @@ function Login() {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          message: 'felipe'
+          user: formData.email,
+          pass: s + 'H' + d
         })
       })
       .then(response => {
@@ -63,6 +66,8 @@ function Login() {
       .then(data => {
         console.log('Response data:', data)
         // Here you would typically check the response to see if login was successful
+        userData.email = formData.email;
+        userData.data = data.data;
         setIsLoggedIn(true)
       })
       .catch(err => {
@@ -75,11 +80,6 @@ function Login() {
     } finally {
       setIsLoading(false)
     }
-  }
-
-  const handleLogout = () => {
-    setIsLoggedIn(false)
-    setFormData({ email: '', password: '' })
   }
 
   if (isLoggedIn) {
@@ -97,9 +97,7 @@ function Login() {
         <div className="card">
           <div className="success">
             <p style={{ color: 'green' }}>Successfully logged in as {formData.email}</p>
-            <button onClick={handleLogout}>
-              Logout
-            </button>
+            <Link to="/" className="app-link">Go to App</Link>
           </div>
         </div>
         <p className="read-the-docs">
