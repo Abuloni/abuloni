@@ -1,15 +1,17 @@
 export async function getText(file?: File) {
   const formData = new FormData();
-  
+
   if (file) {
-    formData.append('file', file);
+    formData.append('inputFile', file, 'file');
   }
 
+
+
   try {
-    const response = await fetch('https://api.pdfrest.com/extracted-text', {
+    const response = await fetch('https://api.cloudmersive.com/convert/pdf/to/txt', {
       method: 'POST',
       headers: {
-        'Api-Key': '3a32cbea-def1-4b2a-a750-b96574980a9e'
+        'Apikey': 'c4df8cfb-5420-4e81-9233-9840a146d7a1'
       },
       body: formData
     });

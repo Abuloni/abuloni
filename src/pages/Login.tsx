@@ -68,6 +68,7 @@ function Login() {
         // Here you would typically check the response to see if login was successful
         userData.email = formData.email;
         userData.data = data.data;
+        localStorage.setItem('lsAbu_CT_userData', JSON.stringify(userData));
         setIsLoggedIn(true)
       })
       .catch(err => {
