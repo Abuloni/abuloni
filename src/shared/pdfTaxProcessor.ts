@@ -216,7 +216,7 @@ function extractFacturas(filatop: FilaTopRow[], filetxt: FileTxtRow[]): void {
     // Find line with '503' (invoice quantity code)
     for (let i = row.fila; i < (row.filatop || filetxt.length); i++) {
       const line = filetxt.find(f => f.fila === i);
-      if (line && line.campo.includes(' 503 ')) {
+      if (line && ((line.campo.includes(' 503 ')) || (line.campo.startsWith('503 ')) )) {
         row.lineaFacturas = line.campo;
         
         // Extract number after 'EMITIDAS'
