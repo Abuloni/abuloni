@@ -101,11 +101,11 @@ const TaxPdfProcessor: React.FC = () => {
         <div className="flex">
           <div className="ml-3">
         <h3 className="text-sm font-medium text-yellow-800">
-          Instrucciones Importantes
+          IMPORTANTE :
         </h3>
         <div className="mt-2 text-sm text-yellow-700">
             <ul className="list-disc list-inside space-y-1" style={{ textAlign: 'left' }}>
-              <li>Seleccionar nueva versión</li>
+              <li>Seleccionar nueva versión de la carpeta</li>
               <li>Agregar datos F29 (carpeta personalizada)</li>
             </ul>
         </div>
