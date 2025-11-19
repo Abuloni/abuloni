@@ -271,3 +271,11 @@
     background: rgba(0, 0, 0, 0.02);
   }
 }
+
+.monthly-table{
+  font-size: smaller;
+}
+
+.div-graph{
+  height: 18em;
+}
